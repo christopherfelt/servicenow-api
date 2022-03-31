@@ -13,14 +13,15 @@ async function getCars(){
             headers: {
                 "Accept": "application/json",
                 "Content-Type":"application/json",
-                "Authorization": "Basic YWRtaW46OFptITB6WExAaVVt"
+                "Authorization": "Basic " + btoa(process.env.SN_USERNAME + ":" + process.env.SN_PASSWORD),
             }
         }
 
         const response = await axios(config);
         console.log(response.data);
     } catch (error) {
-        console.log(error);
+        console.log(error.status);
+        console.log(error.data);
     }
 }
 
